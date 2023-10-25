@@ -18,7 +18,7 @@ The PHPWebPaths library provides classes for working with web paths.
 - [Query](#darlingphpwebpathsinterfacespathspartsurlquery)
 - [Fragment](#darlingphpwebpathsinterfacespathspartsurlfragment)
 - [Route](#darlingroadymoduleutilitiesinterfaceswebpathsroute)
-- [Moduleconfiguration](#darlingroadymoduleutilitiesinterfacesconfigurationmoduleconfiguration)
+- [RelativePath](#darlingphpwebrelativepathsinterfacespathspartsrelativepath)
 
 # Installation
 
@@ -394,7 +394,7 @@ interface Port extends Stringable
 
 ```
 
-### \Darling\PhpWebPaths\interfaces\paths\parts\url\SubDomainName;
+### \Darling\PhpWebPaths\interfaces\paths\parts\url\SubDomainName
 
 ```
 <?php
@@ -423,7 +423,7 @@ interface SubDomainName
 
 ```
 
-### \Darling\PhpWebPaths\interfaces\paths\parts\url\DomainName;
+### \Darling\PhpWebPaths\interfaces\paths\parts\url\DomainName
 
 ```
 <?php
@@ -454,7 +454,7 @@ interface DomainName
 
 ```
 
-### \Darling\PhpWebPaths\interfaces\paths\parts\url\TopLevelDomainName;
+### \Darling\PhpWebPaths\interfaces\paths\parts\url\TopLevelDomainName
 
 ```
 <?php
@@ -616,9 +616,9 @@ For example:
 
 namespace \Darling\PHPWebPaths\interfaces\routes;
 
-use \Darling\PHPWebPaths\interfaces\web\paths\parts\url\Path;
-use \Darling\PHPWebPaths\interfaces\web\paths\parts\url\Query;
+use \Darling\PHPWebRelativePaths\interfaces\paths\parts\RelativePath;
 use \Darling\PHPTextTypes\interfaces\strings\Position;
+use \Darling\PHPTextTypes\interfaces\collections\NameCollection;
 
 /**
  * A Route defines the relationship between one or more requests for
@@ -633,8 +633,36 @@ interface Route
 
     public function position(): Position;
     public function requestNames(): NameCollection;
-    public function relativePathToResource(): Path;
+    public function relativePathToResource(): RelativePath;
 
+}
+
+```
+
+### \Darling\PHPWebRelativePaths\interfaces\paths\parts\RelativePath
+
+```
+<?php
+
+namespace \Darling\PHPWebRelativePaths\interfaces\paths\parts;
+
+use \Stringable;
+
+/**
+ * An RelativePath defines a relative path to a file or directory.
+ *
+ * A RelativePath's value will be a string that consists of a sequence of
+ * characters that begins with an alphanumeric character and is
+ * followed by any combination of letters [a-z], digits [0-9],
+ * periods (.), slashes (/), underscores (_), or hyphens (-).
+ *
+ * The complete RelativePath can be obtained via the __toString()
+ * method.
+ *
+ */
+interface RelativePath extends Stringable
+{
+    public function __toString(): string;
 }
 
 ```
