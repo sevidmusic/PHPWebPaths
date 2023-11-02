@@ -1,6 +1,6 @@
 <?php
 
-namespace Darling\PHPWebPaths\enumerations\paths\parts;
+namespace Darling\PHPWebPaths\enumerations\paths\parts\url;
 
 /**
  * A Scheme is part of a Url.
