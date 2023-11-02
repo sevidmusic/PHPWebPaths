@@ -2,7 +2,7 @@
 
 namespace Darling\PHPWebPaths\enumerations\paths\parts;
 
-    /**
+/**
  * A Scheme is part of a Url.
  *
  * For example:
