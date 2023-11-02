@@ -1,8 +1,8 @@
 <?php
 
-namespace Darling\PHPWebPaths\tests\enumerations\paths\parts;
+namespace Darling\PHPWebPaths\tests\enumerations\paths\parts\url;
 
-use \Darling\PHPWebPaths\enumerations\paths\parts\Scheme;
+use \Darling\PHPWebPaths\enumerations\paths\parts\url\Scheme;
 use \Darling\PHPWebPaths\tests\PHPWebPathsTest;
 
 class SchemeTest extends PHPWebPathsTest
