@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be9ec7d22e693f28e701634c7b1d7127",
+    "content-hash": "0553d30b6711eb4ee329fe544836a41c",
     "packages": [
         {
             "name": "darling/php-darling-dev-tools",
@@ -49,6 +49,53 @@
                 "source": "https://github.com/sevidmusic/PHPDarlingDevTools/tree/v1.0.8"
             },
             "time": "2023-10-25T23:39:53+00:00"
+        },
+        {
+            "name": "darling/php-text-types",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sevidmusic/PHPTextTypes.git",
+                "reference": "8c3012e0e42ca67eb605d4b0e3b8f6667c2fbc98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sevidmusic/PHPTextTypes/zipball/8c3012e0e42ca67eb605d4b0e3b8f6667c2fbc98",
+                "reference": "8c3012e0e42ca67eb605d4b0e3b8f6667c2fbc98",
+                "shasum": ""
+            },
+            "require": {
+                "darling/php-darling-dev-tools": "^1.0",
+                "darling/php-unit-test-utilities": "^1.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Darling\\PHPTextTypes\\": "src/",
+                    "Darling\\PHPTextTypes\\tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sevidmusic",
+                    "email": "sdmwebsdm@gmail.com"
+                }
+            ],
+            "description": "A collection of classes that represent various types of text.",
+            "support": {
+                "issues": "https://github.com/sevidmusic/PHPTextTypes/issues",
+                "source": "https://github.com/sevidmusic/PHPTextTypes/tree/v1.1.4"
+            },
+            "time": "2023-10-25T18:36:01+00:00"
         },
         {
             "name": "darling/php-unit-test-utilities",

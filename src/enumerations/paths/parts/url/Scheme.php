@@ -36,7 +36,7 @@ namespace Darling\PHPWebPaths\enumerations\paths\parts\url;
  *
  * For example:
  *
- * $scheme = Scheme::Https;
+ * $scheme = Scheme::HTTPS;
  *
  * echo $scheme->value;
  *

@@ -5,11 +5,20 @@ namespace Darling\PHPWebPaths\tests\enumerations\paths\parts\url;
 use \Darling\PHPWebPaths\enumerations\paths\parts\url\Scheme;
 use \Darling\PHPWebPaths\tests\PHPWebPathsTest;
 
+/**
+ * The SchemeTest defines tests for the Scheme enum.
+ *
+ * @see \Darling\PHPWebPaths\enumerations\paths\parts\url\Scheme
+ *
+ */
 class SchemeTest extends PHPWebPathsTest
 {
 
     /**
+     * Test Scheme::HTTP case value is: http
+     *
      * @covers Scheme:HTTP
+     *
      */
     public function testHTTPCaseValueIs_http(): void
     {
@@ -25,7 +34,10 @@ class SchemeTest extends PHPWebPathsTest
     }
 
     /**
+     * Test Scheme::HTTPS case value is: https
+     *
      * @covers Scheme:HTTPS
+     *
      */
     public function testHTTPSCaseValueIs_https(): void
     {
@@ -41,7 +53,11 @@ class SchemeTest extends PHPWebPathsTest
     }
 
     /**
+     * Test Scheme case values only consist of alphanumeric
+     * characters (a-z), pluses (+), periods (.), or hyphens (-).
+     *
      * @covers Scheme:cases()
+     *
      */
     public function testSchemeCaseValuesOnlyConsistOfAlphanumericCharactersPlusesPeriodsOrHyphen(): void
     {
@@ -66,7 +82,10 @@ class SchemeTest extends PHPWebPathsTest
     }
 
     /**
+     * Test Scheme case values begin with an alphabetical character.
+     *
      * @covers Scheme:cases()
+     *
      */
     public function testSchemeCaseValuesBeginWithAnAlphabeticalCharacter(): void
     {
@@ -86,7 +105,10 @@ class SchemeTest extends PHPWebPathsTest
     }
 
     /**
+     * Test Scheme case values are lowercase.
+     *
      * @covers Scheme:cases()
+     *
      */
     public function testSchemeCaseValuesAreLowercase(): void
     {
@@ -105,7 +127,10 @@ class SchemeTest extends PHPWebPathsTest
     }
 
     /**
+     * Test Scheme Case Values are not empty.
+     *
      * @covers Scheme:cases()
+     *
      */
     public function testSchemeCaseValuesAreNotEmpty(): void
     {
@@ -120,5 +145,6 @@ class SchemeTest extends PHPWebPathsTest
             );
         }
     }
+
 }
 
