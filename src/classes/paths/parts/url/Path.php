@@ -5,7 +5,7 @@ namespace Darling\PHPWebPaths\classes\paths\parts\url;
 use \Darling\PHPTextTypes\interfaces\collections\SafeTextCollection;
 use \Darling\PHPWebPaths\interfaces\paths\parts\url\Path as PathInterface;
 
-class Path implements PathInterface
+final class Path implements PathInterface
 {
 
 

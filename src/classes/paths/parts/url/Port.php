@@ -4,7 +4,7 @@ namespace Darling\PHPWebPaths\classes\paths\parts\url;
 
 use \Darling\PHPWebPaths\interfaces\paths\parts\url\Port as PortInterface;
 
-class Port implements PortInterface
+final class Port implements PortInterface
 {
 
     /**

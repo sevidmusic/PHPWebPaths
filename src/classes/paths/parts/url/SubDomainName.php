@@ -7,7 +7,7 @@ use \Darling\PHPTextTypes\classes\strings\Text;
 use \Darling\PHPTextTypes\interfaces\strings\Name;
 use \Darling\PHPWebPaths\interfaces\paths\parts\url\SubDomainName as SubDomainNameInterface;
 
-class SubDomainName implements SubDomainNameInterface
+final class SubDomainName implements SubDomainNameInterface
 {
     public function __construct(private Name $name) {
         $filteredName = new NameInstance(
