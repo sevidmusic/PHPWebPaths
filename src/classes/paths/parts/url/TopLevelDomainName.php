@@ -7,7 +7,7 @@ use \Darling\PHPTextTypes\classes\strings\Text;
 use \Darling\PHPTextTypes\interfaces\strings\Name;
 use \Darling\PHPWebPaths\interfaces\paths\parts\url\TopLevelDomainName as TopLevelDomainNameInterface;
 
-class TopLevelDomainName implements TopLevelDomainNameInterface
+final class TopLevelDomainName implements TopLevelDomainNameInterface
 {
     public function __construct(private Name $name) {
         $filteredName = new NameInstance(
