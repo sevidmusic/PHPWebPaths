@@ -8,15 +8,18 @@ use \Stringable;
 /**
  * A DomainName is part of a Url.
  *
- * A DomainName may consist of alphanumeric characters (a-z),
+ * A DomainName must begin with a lowercase alphanumeric character,
+ * and may consist of lowercase alphanumeric characters (a-z) and (0-9),
  * hyphens (-), and periods (.).
  *
  * For example:
  *
  *     https://sub.example.com:8080/path?query#fragment
- *             \_/
- *              |
- *           Sub-Domain
+ *                 \_____/
+ *                    |
+ *                  Domain
+ *                   Name
+ *
  */
 interface DomainName extends Stringable
 {

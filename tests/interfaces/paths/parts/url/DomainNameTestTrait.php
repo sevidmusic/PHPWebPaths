@@ -74,7 +74,7 @@ trait DomainNameTestTrait
     {
         $filteredName = new NameInstance(
             new Text(
-                str_replace('_', '-', $name->__toString())
+                strtolower(str_replace('_', '-', $name->__toString()))
             )
         );
         $this->expectedName = $filteredName;
@@ -132,10 +132,14 @@ trait DomainNameTestTrait
     public function testDomainNameOnlyConsistsOfAlphanumericCharactersPeriodsOrHyphens(): void
     {
         $validNonAlphanumericChars = ['.', '-'];
-        $chars = str_split($this->domainNameTestInstance()->__toString());
+        $chars = str_split(
+            $this->domainNameTestInstance()->__toString()
+        );
         foreach($chars as $char) {
             $this->assertTrue(
-                ctype_alnum($char) || in_array($char, $validNonAlphanumericChars),
+                ctype_alnum($char)
+                ||
+                in_array($char, $validNonAlphanumericChars),
                 $this->testFailedMessage(
                    $this->domainNameTestInstance(),
                    '__toString',
@@ -203,12 +207,36 @@ trait DomainNameTestTrait
     public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
     {
         $this->assertTrue(
-            ctype_alnum($this->domainNameTestInstance()->__toString()[0]),
+            ctype_alnum(
+                $this->domainNameTestInstance()->__toString()[0]
+            ),
             $this->testFailedMessage(
                $this->domainNameTestInstance(),
                '__toString',
                 'returns a string that begins with an alphanumeric ' .
                 'character'
+            ),
+        );
+    }
+
+    /**
+     * Test __toString() returns a string that begins with an
+     * alphanumeric character.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower($this->domainNameTestInstance()->__toString()),
+            $this->domainNameTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->domainNameTestInstance(),
+               '__toString',
+                'returns a lowercase string'
             ),
         );
     }

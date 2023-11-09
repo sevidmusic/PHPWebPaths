@@ -27,17 +27,18 @@ trait TopLevelDomainNameTestTrait
 
     /**
      * @var Name $expectedName The name that is expected to be
-     *                         returned by the TopLevelDomainName being
-     *                         tested's name() method.
+     *                         returned by the TopLevelDomainName
+     *                         being tested's name() method.
      */
     protected Name $expectedName;
 
     /**
-     * Set up an instance of a TopLevelDomainName implementation to test.
+     * Set up an instance of a TopLevelDomainName implementation
+     * to test.
      *
-     * This method must also set the TopLevelDomainName implementation
-     * instance to be tested via the setTopLevelDomainNameTestInstance()
-     * method.
+     * This method must also set the TopLevelDomainName
+     * implementation instance to be tested via the
+     * setTopLevelDomainNameTestInstance() method.
      *
      * This method must also set the Name instance that is expected
      * to be returned by the TopLevelDomainName being tested's name()
@@ -55,7 +56,9 @@ trait TopLevelDomainNameTestTrait
      * {
      *     $name = new Name(new Text($this->randomChars()));
      *     $this->setExpectedName($name);
-     *     $this->setTopLevelDomainNameTestInstance(new TopLevelDomainName($name));
+     *     $this->setTopLevelDomainNameTestInstance(
+     *         new TopLevelDomainName($name)
+     *     );
      * }
      *
      * ```
@@ -74,7 +77,7 @@ trait TopLevelDomainNameTestTrait
     {
         $filteredName = new NameInstance(
             new Text(
-                str_replace('_', '-', $name->__toString())
+                strtolower(str_replace('_', '-', $name->__toString()))
             )
         );
         $this->expectedName = $filteredName;
@@ -132,10 +135,14 @@ trait TopLevelDomainNameTestTrait
     public function testTopLevelDomainNameOnlyConsistsOfAlphanumericCharactersPeriodsOrHyphens(): void
     {
         $validNonAlphanumericChars = ['.', '-'];
-        $chars = str_split($this->topLevelDomainNameTestInstance()->__toString());
+        $chars = str_split(
+            $this->topLevelDomainNameTestInstance()->__toString()
+        );
         foreach($chars as $char) {
             $this->assertTrue(
-                ctype_alnum($char) || in_array($char, $validNonAlphanumericChars),
+                ctype_alnum($char)
+                ||
+                in_array($char, $validNonAlphanumericChars),
                 $this->testFailedMessage(
                    $this->topLevelDomainNameTestInstance(),
                    '__toString',
@@ -203,12 +210,38 @@ trait TopLevelDomainNameTestTrait
     public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
     {
         $this->assertTrue(
-            ctype_alnum($this->topLevelDomainNameTestInstance()->__toString()[0]),
+            ctype_alnum(
+                $this->topLevelDomainNameTestInstance()
+                     ->__toString()[0]
+            ),
             $this->testFailedMessage(
                $this->topLevelDomainNameTestInstance(),
                '__toString',
                 'returns a string that begins with an alphanumeric ' .
                 'character'
+            ),
+        );
+    }
+
+    /**
+     * Test __toString() returns a lowercase string.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower(
+                $this->topLevelDomainNameTestInstance()->__toString()
+            ),
+            $this->topLevelDomainNameTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->topLevelDomainNameTestInstance(),
+               '__toString',
+                'returns a lowercase string'
             ),
         );
     }
