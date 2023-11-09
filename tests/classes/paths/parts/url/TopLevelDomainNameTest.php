@@ -2,11 +2,11 @@
 
 namespace Darling\PHPWebPaths\tests\classes\paths\parts\url;
 
+use \Darling\PHPTextTypes\classes\strings\Name;
+use \Darling\PHPTextTypes\classes\strings\Text;
 use \Darling\PHPWebPaths\classes\paths\parts\url\TopLevelDomainName;
 use \Darling\PHPWebPaths\tests\PHPWebPathsTest;
 use \Darling\PHPWebPaths\tests\interfaces\paths\parts\url\TopLevelDomainNameTestTrait;
-use \Darling\PHPTextTypes\classes\strings\Name;
-use \Darling\PHPTextTypes\classes\strings\Text;
 
 class TopLevelDomainNameTest extends PHPWebPathsTest
 {

@@ -8,8 +8,8 @@ use \Stringable;
 /**
  * A SubDomainName is part of a Url.
  *
- * A SubDomainName may consist of alphanumeric characters (a-z),
- * hyphens (-), and periods (.).
+ * A SubDomainName may consist of lowercase alphanumeric characters
+ * (a-z) and (0-9), hyphens (-), and periods (.).
  *
  * For example:
  *
