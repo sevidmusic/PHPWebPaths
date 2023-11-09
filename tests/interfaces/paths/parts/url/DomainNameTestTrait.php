@@ -74,7 +74,7 @@ trait DomainNameTestTrait
     {
         $filteredName = new NameInstance(
             new Text(
-                str_replace('_', '-', $name->__toString())
+                strtolower(str_replace('_', '-', $name->__toString()))
             )
         );
         $this->expectedName = $filteredName;
@@ -217,5 +217,27 @@ trait DomainNameTestTrait
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;
 
+
+    /**
+     * Test __toString() returns a string that begins with an
+     * alphanumeric character.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower($this->domainNameTestInstance()->__toString()),
+            $this->domainNameTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->domainNameTestInstance(),
+               '__toString',
+                'returns a lowercase string'
+            ),
+        );
+    }
 }
 
