@@ -24,6 +24,13 @@ trait AuthorityTestTrait
     protected Authority $authority;
 
     /**
+     * @var Host $expectedHost The Host instance that is expected to
+     *                         be returned by the Authority instance
+     *                         being tested's host() method.
+     */
+    private Host $expectedHost;
+
+    /**
      * Set up an instance of a Authority implementation to test.
      *
      * This method must also set the Authority implementation instance
@@ -48,13 +55,6 @@ trait AuthorityTestTrait
      *
      */
     abstract protected function setUp(): void;
-
-    /**
-     * @var Host $expectedHost The Host instance that is expected to
-     *                         be returned by the Authority instance
-     *                         being tested's host() method.
-     */
-    private Host $expectedHost;
 
     /**
      * Return the Authority implementation instance to test.
