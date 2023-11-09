@@ -132,10 +132,14 @@ trait DomainNameTestTrait
     public function testDomainNameOnlyConsistsOfAlphanumericCharactersPeriodsOrHyphens(): void
     {
         $validNonAlphanumericChars = ['.', '-'];
-        $chars = str_split($this->domainNameTestInstance()->__toString());
+        $chars = str_split(
+            $this->domainNameTestInstance()->__toString()
+        );
         foreach($chars as $char) {
             $this->assertTrue(
-                ctype_alnum($char) || in_array($char, $validNonAlphanumericChars),
+                ctype_alnum($char)
+                ||
+                in_array($char, $validNonAlphanumericChars),
                 $this->testFailedMessage(
                    $this->domainNameTestInstance(),
                    '__toString',
@@ -203,7 +207,9 @@ trait DomainNameTestTrait
     public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
     {
         $this->assertTrue(
-            ctype_alnum($this->domainNameTestInstance()->__toString()[0]),
+            ctype_alnum(
+                $this->domainNameTestInstance()->__toString()[0]
+            ),
             $this->testFailedMessage(
                $this->domainNameTestInstance(),
                '__toString',
@@ -212,11 +218,6 @@ trait DomainNameTestTrait
             ),
         );
     }
-
-    abstract public static function assertTrue(bool $condition, string $message = ''): void;
-    abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
-    abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;
-
 
     /**
      * Test __toString() returns a string that begins with an
@@ -239,5 +240,10 @@ trait DomainNameTestTrait
             ),
         );
     }
+
+    abstract public static function assertTrue(bool $condition, string $message = ''): void;
+    abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
+    abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;
+
 }
 
