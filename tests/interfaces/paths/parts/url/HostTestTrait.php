@@ -23,16 +23,16 @@ trait HostTestTrait
     protected Host $host;
 
     /**
-     * @var SubDomainName $expectedSubDomainName The SubDomainName
-     *                                           instance that is
-     *                                           expected to be
-     *                                           returned by the
-     *                                           Host instance being
-     *                                           tested's
-     *                                           subDomainName()
-     *                                           method.
+     * @var ?SubDomainName $expectedSubDomainName The SubDomainName
+     *                                            instance that is
+     *                                            expected to be
+     *                                            returned by the
+     *                                            Host instance being
+     *                                            tested's
+     *                                            subDomainName()
+     *                                            method.
      */
-    private SubDomainName $expectedSubDomainName;
+    private ?SubDomainName $expectedSubDomainName;
 
     /**
      * @var DomainName $expectedDomainName The DomainName instance
@@ -44,14 +44,14 @@ trait HostTestTrait
     private DomainName $expectedDomainName;
 
     /**
-     * @var TopLevelDomainName $expectedTopLevelDomainName
+     * @var ?TopLevelDomainName $expectedTopLevelDomainName
      *                                The TopLevelDomainName instance
      *                                that is expected to be returned
      *                                by the Host instance being
      *                                tested's topLevelDomainName()
      *                                method.
      */
-    private TopLevelDomainName $expectedTopLevelDomainName;
+    private ?TopLevelDomainName $expectedTopLevelDomainName;
 
     /**
      * Set up an instance of a Host implementation to test.
@@ -84,13 +84,31 @@ trait HostTestTrait
      * ```
      * public function setUp(): void
      * {
-     *     $subDomainName = new SubDomainName(new Name(new Text($this->randomChars())));
+     *     $subDomainName = (
+     *         rand(0, 1)
+     *         ? null
+     *         : new SubDomainName(
+     *             new Name(new Text($this->randomChars())))
+     *         );
      *     $this->setExpectedSubDomainName($subDomainName);
-     *     $domainName = new DomainName(new Name(new Text($this->randomChars())));
+     *     $domainName = new DomainName(
+     *         new Name(new Text($this->randomChars()))
+     *     );
      *     $this->setExpectedDomainName($domainName);
-     *     $topLevelDomainName = new TopLevelDomainName(new Name(new Text($this->randomChars())));
+     *     $topLevelDomainName = (
+     *         rand(0, 1)
+     *         ? null
+     *         : new TopLevelDomainName(
+     *             new Name(new Text($this->randomChars())))
+     *         );
      *     $this->setExpectedTopLevelDomainName($topLevelDomainName);
-     *     $this->setHostTestInstance(new Host($subDomainName, $domainName, $topLevelDomainName));
+     *     $this->setHostTestInstance(
+     *         new Host(
+     *             subDomainName: $subDomainName,
+     *             domainName: $domainName,
+     *             topLevelDomainName: $topLevelDomainName
+     *         )
+     *     );
      * }
      *
      * ```
@@ -129,17 +147,18 @@ trait HostTestTrait
      * Set the SubDomainName that is expected to be returned by the
      * Host instance being tested's subDomainName() method.
      *
-     * @param SubDomainName $subDomainName The SubDomainName instance
+     * @param ?SubDomainName $subDomainName The SubDomainName instance
      *                                     that is expected to be
      *                                     returned by the Host
      *                                     instance being tested's
      *                                     subDomainName() method.
-
      *
      * @return void
      *
      */
-    public function setExpectedSubDomainName(SubDomainName $subDomainName): void
+    public function setExpectedSubDomainName(
+        ?SubDomainName $subDomainName
+    ): void
     {
         $this->expectedSubDomainName = $subDomainName;
     }
@@ -148,10 +167,10 @@ trait HostTestTrait
      * Return the SubDomainName that is expected to be returned by the
      * Host instance being tested's subDomainName() method.
      *
-     * @return SubDomainName
+     * @return ?SubDomainName
      *
      */
-    public function expectedSubDomainName(): SubDomainName
+    public function expectedSubDomainName(): ?SubDomainName
     {
         return $this->expectedSubDomainName;
     }
@@ -187,8 +206,8 @@ trait HostTestTrait
     }
 
     /**
-     * Set the TopLevelDomainName that is expected to be returned by the
-     * Host instance being tested's topLevelDomainName() method.
+     * Set the TopLevelDomainName that is expected to be returned by
+     * the Host instance being tested's topLevelDomainName() method.
      *
      * @param TopLevelDomainName $topLevelDomainName
      *                                The TopLevelDomainName instance
@@ -200,7 +219,9 @@ trait HostTestTrait
      * @return void
      *
      */
-    public function setExpectedTopLevelDomainName(TopLevelDomainName $topLevelDomainName): void
+    public function setExpectedTopLevelDomainName(
+        ?TopLevelDomainName $topLevelDomainName
+    ): void
     {
         $this->expectedTopLevelDomainName = $topLevelDomainName;
     }
@@ -209,10 +230,10 @@ trait HostTestTrait
      * Return the TopLevelDomainName that is expected to be returned by the
      * Host instance being tested's topLevelDomainName() method.
      *
-     * @return topLevelDomainName
+     * @return ?TopLevelDomainName
      *
      */
-    public function expectedTopLevelDomainName(): TopLevelDomainName
+    public function expectedTopLevelDomainName(): ?TopLevelDomainName
     {
         return $this->expectedTopLevelDomainName;
     }
@@ -256,11 +277,9 @@ trait HostTestTrait
     public function test___toString_returns_SubDomainName_DomainName_and_TopLevelDomainName_concatenated_with_a_period(): void
     {
         $this->assertEquals(
-            $this->hostTestInstance()->subDomainName()->__toString() .
-            '.' .
+            (is_null($this->hostTestInstance()->subDomainName()) ? '' : $this->hostTestInstance()->subDomainName()->__toString() . '.') .
             $this->hostTestInstance()->domainName()->__toString() .
-            '.' .
-            $this->hostTestInstance()->topLevelDomainName()->__toString(),
+            (is_null($this->hostTestInstance()->topLevelDomainName()) ? '' : '.' . $this->hostTestInstance()->topLevelDomainName()->__toString()),
             $this->hostTestInstance()->__toString(),
             $this->testFailedMessage(
                $this->hostTestInstance(),
@@ -359,8 +378,7 @@ trait HostTestTrait
     }
 
     /**
-     * Test __toString() returns a string that begins with an
-     * alphanumeric character.
+     * Test __toString() returns a lowercase string.
      *
      * @return void
      *
