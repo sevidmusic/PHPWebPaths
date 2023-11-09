@@ -10,16 +10,28 @@ use \Darling\PHPWebPaths\interfaces\paths\parts\url\TopLevelDomainName;
 final class Host implements HostInterface
 {
     public function __construct(
-        private SubDomainName $subDomainName,
         private DomainName $domainName,
-        private TopLevelDomainName $topLevelDomainName,
+        private ?TopLevelDomainName $topLevelDomainName = null,
+        private ?SubDomainName $subDomainName = null,
     ) {}
 
     public function __toString(): string {
-        return $this->subDomainName . '.' . $this->domainName . '.' . $this->topLevelDomainName;
+        return (
+            is_null($this->subDomainName)
+            ? ''
+            : $this->subDomainName . '.'
+        ) .
+        $this->domainName .
+        (
+            is_null(
+                $this->topLevelDomainName
+            )
+            ? ''
+            : '.' . $this->topLevelDomainName
+        );
     }
 
-    public function subDomainName(): SubDomainName
+    public function subDomainName(): ?SubDomainName
     {
         return $this->subDomainName;
     }
@@ -29,7 +41,7 @@ final class Host implements HostInterface
         return $this->domainName;
     }
 
-    public function topLevelDomainName(): TopLevelDomainName
+    public function topLevelDomainName(): ?TopLevelDomainName
     {
         return $this->topLevelDomainName;
     }

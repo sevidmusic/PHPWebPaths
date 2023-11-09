@@ -26,13 +26,31 @@ class HostTest extends PHPWebPathsTest
 
     public function setUp(): void
     {
-        $subDomainName = new SubDomainName(new Name(new Text($this->randomChars())));
+        $subDomainName = (
+            rand(0, 1)
+            ? null
+            : new SubDomainName(
+                new Name(new Text($this->randomChars())))
+            );
         $this->setExpectedSubDomainName($subDomainName);
-        $domainName = new DomainName(new Name(new Text($this->randomChars())));
+        $domainName = new DomainName(
+            new Name(new Text($this->randomChars()))
+        );
         $this->setExpectedDomainName($domainName);
-        $topLevelDomainName = new TopLevelDomainName(new Name(new Text($this->randomChars())));
+        $topLevelDomainName = (
+            rand(0, 1)
+            ? null
+            : new TopLevelDomainName(
+                new Name(new Text($this->randomChars())))
+            );
         $this->setExpectedTopLevelDomainName($topLevelDomainName);
-        $this->setHostTestInstance(new Host($subDomainName, $domainName, $topLevelDomainName));
+        $this->setHostTestInstance(
+            new Host(
+                subDomainName: $subDomainName,
+                domainName: $domainName,
+                topLevelDomainName: $topLevelDomainName
+            )
+        );
     }
 
 }

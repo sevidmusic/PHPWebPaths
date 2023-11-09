@@ -25,9 +25,9 @@ interface Host extends Stringable
 
     public function __toString(): string;
 
-    public function subDomainName(): SubDomainName;
+    public function subDomainName(): ?SubDomainName;
     public function domainName(): DomainName;
-    public function topLevelDomainName(): TopLevelDomainName;
+    public function topLevelDomainName(): ?TopLevelDomainName;
 
 }
 
