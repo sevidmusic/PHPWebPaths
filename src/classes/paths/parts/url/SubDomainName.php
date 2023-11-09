@@ -12,7 +12,7 @@ final class SubDomainName implements SubDomainNameInterface
     public function __construct(private Name $name) {
         $filteredName = new NameInstance(
             new Text(
-                str_replace('_', '-', $name->__toString())
+                strtolower(str_replace('_', '-', $name->__toString()))
             )
         );
         $this->name = $filteredName;

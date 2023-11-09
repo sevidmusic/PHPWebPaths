@@ -74,7 +74,7 @@ trait SubDomainNameTestTrait
     {
         $filteredName = new NameInstance(
             new Text(
-                str_replace('_', '-', $name->__toString())
+                strtolower(str_replace('_', '-', $name->__toString()))
             )
         );
         $this->expectedName = $filteredName;
@@ -213,6 +213,27 @@ trait SubDomainNameTestTrait
         );
     }
 
+    /**
+     * Test __toString() returns a lowercase string.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower($this->subDomainNameTestInstance()->__toString()),
+            $this->subDomainNameTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->subDomainNameTestInstance(),
+               '__toString',
+                'returns a lowercase string' .
+                'character'
+            ),
+        );
+    }
     abstract public static function assertTrue(bool $condition, string $message = ''): void;
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;
