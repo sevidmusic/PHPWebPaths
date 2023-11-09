@@ -26,7 +26,9 @@ class TopLevelDomainNameTest extends PHPWebPathsTest
     {
         $name = new Name(new Text('-' . $this->randomChars()));
         $this->setExpectedName($name);
-        $this->setTopLevelDomainNameTestInstance(new TopLevelDomainName($name));
+        $this->setTopLevelDomainNameTestInstance(
+            new TopLevelDomainName($name)
+        );
     }
 
 }
