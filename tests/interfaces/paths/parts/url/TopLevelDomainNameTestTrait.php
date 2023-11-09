@@ -18,12 +18,12 @@ trait TopLevelDomainNameTestTrait
 {
 
     /**
-     * @var TopLevelDomainName $subDomainName An instance of a
+     * @var TopLevelDomainName $topLevelDomainName An instance of a
      *                                   TopLevelDomainName
      *                                   implementation to
      *                                   test.
      */
-    protected TopLevelDomainName $subDomainName;
+    protected TopLevelDomainName $topLevelDomainName;
 
     /**
      * @var Name $expectedName The name that is expected to be
@@ -98,15 +98,15 @@ trait TopLevelDomainNameTestTrait
      * @return TopLevelDomainName
      *
      */
-    protected function subDomainNameTestInstance(): TopLevelDomainName
+    protected function topLevelDomainNameTestInstance(): TopLevelDomainName
     {
-        return $this->subDomainName;
+        return $this->topLevelDomainName;
     }
 
     /**
      * Set the TopLevelDomainName implementation instance to test.
      *
-     * @param TopLevelDomainName $subDomainNameTestInstance
+     * @param TopLevelDomainName $topLevelDomainNameTestInstance
      *                              An instance of an
      *                              implementation of
      *                              the TopLevelDomainName
@@ -116,10 +116,10 @@ trait TopLevelDomainNameTestTrait
      *
      */
     protected function setTopLevelDomainNameTestInstance(
-        TopLevelDomainName $subDomainNameTestInstance
+        TopLevelDomainName $topLevelDomainNameTestInstance
     ): void
     {
-        $this->subDomainName = $subDomainNameTestInstance;
+        $this->topLevelDomainName = $topLevelDomainNameTestInstance;
     }
 
     /**
@@ -132,12 +132,12 @@ trait TopLevelDomainNameTestTrait
     public function testTopLevelDomainNameOnlyConsistsOfAlphanumericCharactersPeriodsOrHyphens(): void
     {
         $validNonAlphanumericChars = ['.', '-'];
-        $chars = str_split($this->subDomainNameTestInstance()->__toString());
+        $chars = str_split($this->topLevelDomainNameTestInstance()->__toString());
         foreach($chars as $char) {
             $this->assertTrue(
                 ctype_alnum($char) || in_array($char, $validNonAlphanumericChars),
                 $this->testFailedMessage(
-                   $this->subDomainNameTestInstance(),
+                   $this->topLevelDomainNameTestInstance(),
                    '__toString',
                    'A TopLevelDomainName must only consists of a ' .
                    'letters [a-z], digits [0-9], periods (.), ' .
@@ -157,9 +157,9 @@ trait TopLevelDomainNameTestTrait
     {
         $this->assertEquals(
             $this->expectedName(),
-            $this->subDomainNameTestInstance()->name(),
+            $this->topLevelDomainNameTestInstance()->name(),
             $this->testFailedMessage(
-                $this->subDomainNameTestInstance(),
+                $this->topLevelDomainNameTestInstance(),
                 '__toString',
                 'A TopLevelDomainName must only consists of a ' .
                 'letters [a-z], digits [0-9], periods (.), ' .
@@ -180,9 +180,9 @@ trait TopLevelDomainNameTestTrait
     {
         $this->assertEquals(
             $this->expectedName()->__toString(),
-            $this->subDomainNameTestInstance()->__toString(),
+            $this->topLevelDomainNameTestInstance()->__toString(),
             $this->testFailedMessage(
-                $this->subDomainNameTestInstance(),
+                $this->topLevelDomainNameTestInstance(),
                 '__toString',
                 'A TopLevelDomainName must only consists of a ' .
                 'letters [a-z], digits [0-9], periods (.), ' .
@@ -190,6 +190,29 @@ trait TopLevelDomainNameTestTrait
             ),
         );
     }
+
+    /**
+     * Test __toString() returns a string that begins with an
+     * alphanumeric character.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
+    {
+        $this->assertTrue(
+            ctype_alnum($this->topLevelDomainNameTestInstance()->__toString()[0]),
+            $this->testFailedMessage(
+               $this->topLevelDomainNameTestInstance(),
+               '__toString',
+                'returns a string that begins with an alphanumeric ' .
+                'character'
+            ),
+        );
+    }
+
     abstract public static function assertTrue(bool $condition, string $message = ''): void;
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;

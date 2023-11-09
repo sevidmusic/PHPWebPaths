@@ -24,7 +24,7 @@ class SubDomainNameTest extends PHPWebPathsTest
 
     public function setUp(): void
     {
-        $name = new Name(new Text($this->randomChars()));
+        $name = new Name(new Text('-' . $this->randomChars()));
         $this->setExpectedName($name);
         $this->setSubDomainNameTestInstance(new SubDomainName($name));
     }
