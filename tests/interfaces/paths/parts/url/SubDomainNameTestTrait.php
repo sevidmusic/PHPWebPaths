@@ -55,7 +55,9 @@ trait SubDomainNameTestTrait
      * {
      *     $name = new Name(new Text($this->randomChars()));
      *     $this->setExpectedName($name);
-     *     $this->setSubDomainNameTestInstance(new SubDomainName($name));
+     *     $this->setSubDomainNameTestInstance(
+     *         new SubDomainName($name)
+     *     );
      * }
      *
      * ```
@@ -132,10 +134,14 @@ trait SubDomainNameTestTrait
     public function testSubDomainNameOnlyConsistsOfAlphanumericCharactersPeriodsOrHyphens(): void
     {
         $validNonAlphanumericChars = ['.', '-'];
-        $chars = str_split($this->subDomainNameTestInstance()->__toString());
+        $chars = str_split(
+            $this->subDomainNameTestInstance()->__toString()
+        );
         foreach($chars as $char) {
             $this->assertTrue(
-                ctype_alnum($char) || in_array($char, $validNonAlphanumericChars),
+                ctype_alnum($char)
+                ||
+                in_array($char, $validNonAlphanumericChars),
                 $this->testFailedMessage(
                    $this->subDomainNameTestInstance(),
                    '__toString',
@@ -203,7 +209,9 @@ trait SubDomainNameTestTrait
     public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
     {
         $this->assertTrue(
-            ctype_alnum($this->subDomainNameTestInstance()->__toString()[0]),
+            ctype_alnum(
+                $this->subDomainNameTestInstance()->__toString()[0]
+            ),
             $this->testFailedMessage(
                $this->subDomainNameTestInstance(),
                '__toString',
@@ -224,7 +232,9 @@ trait SubDomainNameTestTrait
     public function test___toString_returns_a_lowercase_string(): void
     {
         $this->assertEquals(
-            strtolower($this->subDomainNameTestInstance()->__toString()),
+            strtolower(
+                $this->subDomainNameTestInstance()->__toString()
+            ),
             $this->subDomainNameTestInstance()->__toString(),
             $this->testFailedMessage(
                $this->subDomainNameTestInstance(),
