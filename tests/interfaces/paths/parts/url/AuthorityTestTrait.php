@@ -3,6 +3,7 @@
 namespace Darling\PHPWebPaths\tests\interfaces\paths\parts\url;
 
 use Darling\PHPWebPaths\interfaces\paths\parts\url\Host;
+use Darling\PHPWebPaths\interfaces\paths\parts\url\Port;
 use \Darling\PHPWebPaths\interfaces\paths\parts\url\Authority;
 
 /**
@@ -29,6 +30,14 @@ trait AuthorityTestTrait
      *                         being tested's host() method.
      */
     private Host $expectedHost;
+
+    /**
+     * @var Port $expectedPort The Port instance that is expected
+     *                         to be returned by the Authority
+     *                         instance being tested's host()
+     *                         method.
+     */
+    private ?Port $expectedPort;
 
     /**
      * Set up an instance of a Authority implementation to test.
@@ -111,6 +120,30 @@ trait AuthorityTestTrait
     }
 
     /**
+     * Set the Port instance that is expected to be returned by
+     * the Authority instance being tested's port() method.
+     *
+     * @return void
+     *
+     */
+    protected function setExpectedPort(?Port $port): void
+    {
+        $this->expectedPort = $port;
+    }
+
+    /**
+     * Return the Port instance that is expected to be returned by
+     * the Authority instance being tested's port() method.
+     *
+     * @return Port
+     *
+     */
+    protected function expectedPort(): ?Port
+    {
+        return $this->expectedPort;
+    }
+
+    /**
      * Test that the host() method returns the expected Host.
      *
      * @return void
@@ -126,6 +159,26 @@ trait AuthorityTestTrait
                $this->authorityTestInstance(),
                'host',
                 'returns the expected Host'
+            ),
+        );
+    }
+
+    /**
+     * Test that the port() method returns the expected Port.
+     *
+     * @return void
+     *
+     * @covers Authority->port()
+     */
+    public function test_port_returns_the_expected_Port(): void
+    {
+        $this->assertEquals(
+            $this->expectedPort(),
+            $this->authorityTestInstance()->port(),
+            $this->testFailedMessage(
+               $this->authorityTestInstance(),
+               'port',
+                'returns the expected Port'
             ),
         );
     }
