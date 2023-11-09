@@ -26,7 +26,12 @@ class Authority implements AuthorityInterface
 
     public function __toString(): string
     {
-        return '';
+        return $this->host()->__toString() .
+            (
+                is_null($this->port())
+                ? ''
+                : ':' . $this->port()->__toString()
+            );
     }
 
 }
