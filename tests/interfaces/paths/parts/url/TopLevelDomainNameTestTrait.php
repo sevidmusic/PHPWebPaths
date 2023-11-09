@@ -74,7 +74,7 @@ trait TopLevelDomainNameTestTrait
     {
         $filteredName = new NameInstance(
             new Text(
-                str_replace('_', '-', $name->__toString())
+                strtolower(str_replace('_', '-', $name->__toString()))
             )
         );
         $this->expectedName = $filteredName;
@@ -209,6 +209,27 @@ trait TopLevelDomainNameTestTrait
                '__toString',
                 'returns a string that begins with an alphanumeric ' .
                 'character'
+            ),
+        );
+    }
+
+    /**
+     * Test __toString() returns a lowercase string.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower($this->topLevelDomainNameTestInstance()->__toString()),
+            $this->topLevelDomainNameTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->topLevelDomainNameTestInstance(),
+               '__toString',
+                'returns a lowercase string'
             ),
         );
     }
