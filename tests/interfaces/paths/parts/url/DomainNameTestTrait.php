@@ -18,12 +18,12 @@ trait DomainNameTestTrait
 {
 
     /**
-     * @var DomainName $subDomainName An instance of a
+     * @var DomainName $domainName An instance of a
      *                                   DomainName
      *                                   implementation to
      *                                   test.
      */
-    protected DomainName $subDomainName;
+    protected DomainName $domainName;
 
     /**
      * @var Name $expectedName The name that is expected to be
@@ -98,15 +98,15 @@ trait DomainNameTestTrait
      * @return DomainName
      *
      */
-    protected function subDomainNameTestInstance(): DomainName
+    protected function domainNameTestInstance(): DomainName
     {
-        return $this->subDomainName;
+        return $this->domainName;
     }
 
     /**
      * Set the DomainName implementation instance to test.
      *
-     * @param DomainName $subDomainNameTestInstance
+     * @param DomainName $domainNameTestInstance
      *                              An instance of an
      *                              implementation of
      *                              the DomainName
@@ -116,10 +116,10 @@ trait DomainNameTestTrait
      *
      */
     protected function setDomainNameTestInstance(
-        DomainName $subDomainNameTestInstance
+        DomainName $domainNameTestInstance
     ): void
     {
-        $this->subDomainName = $subDomainNameTestInstance;
+        $this->domainName = $domainNameTestInstance;
     }
 
     /**
@@ -132,12 +132,12 @@ trait DomainNameTestTrait
     public function testDomainNameOnlyConsistsOfAlphanumericCharactersPeriodsOrHyphens(): void
     {
         $validNonAlphanumericChars = ['.', '-'];
-        $chars = str_split($this->subDomainNameTestInstance()->__toString());
+        $chars = str_split($this->domainNameTestInstance()->__toString());
         foreach($chars as $char) {
             $this->assertTrue(
                 ctype_alnum($char) || in_array($char, $validNonAlphanumericChars),
                 $this->testFailedMessage(
-                   $this->subDomainNameTestInstance(),
+                   $this->domainNameTestInstance(),
                    '__toString',
                    'A DomainName must only consists of a ' .
                    'letters [a-z], digits [0-9], periods (.), ' .
@@ -157,9 +157,9 @@ trait DomainNameTestTrait
     {
         $this->assertEquals(
             $this->expectedName(),
-            $this->subDomainNameTestInstance()->name(),
+            $this->domainNameTestInstance()->name(),
             $this->testFailedMessage(
-                $this->subDomainNameTestInstance(),
+                $this->domainNameTestInstance(),
                 '__toString',
                 'A DomainName must only consists of a ' .
                 'letters [a-z], digits [0-9], periods (.), ' .
@@ -180,9 +180,9 @@ trait DomainNameTestTrait
     {
         $this->assertEquals(
             $this->expectedName()->__toString(),
-            $this->subDomainNameTestInstance()->__toString(),
+            $this->domainNameTestInstance()->__toString(),
             $this->testFailedMessage(
-                $this->subDomainNameTestInstance(),
+                $this->domainNameTestInstance(),
                 '__toString',
                 'A DomainName must only consists of a ' .
                 'letters [a-z], digits [0-9], periods (.), ' .
@@ -190,6 +190,29 @@ trait DomainNameTestTrait
             ),
         );
     }
+
+    /**
+     * Test __toString() returns a string that begins with an
+     * alphanumeric character.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
+    {
+        $this->assertTrue(
+            ctype_alnum($this->domainNameTestInstance()->__toString()[0]),
+            $this->testFailedMessage(
+               $this->domainNameTestInstance(),
+               '__toString',
+                'returns a string that begins with an alphanumeric ' .
+                'character'
+            ),
+        );
+    }
+
     abstract public static function assertTrue(bool $condition, string $message = ''): void;
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;

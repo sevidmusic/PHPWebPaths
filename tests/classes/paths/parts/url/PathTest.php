@@ -25,13 +25,13 @@ class PathTest extends PHPWebPathsTest
     public function setUp(): void
     {
         $safeTextCollection = new SafeTextCollection(
-            new SafeText(new Text($this->randomChars())),
-            new SafeText(new Text($this->randomChars())),
-            new SafeText(new Text($this->randomChars())),
-            new SafeText(new Text($this->randomChars())),
-            new SafeText(new Text($this->randomChars())),
-            new SafeText(new Text($this->randomChars())),
-            new SafeText(new Text($this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
+            new SafeText(new Text('-' . $this->randomChars())),
         );
         $this->setExpectedSafeTextCollection($safeTextCollection);
         $this->setPathTestInstance(new Path($safeTextCollection));

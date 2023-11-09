@@ -219,6 +219,28 @@ trait QueryTestTrait
         );
     }
 
+    /**
+     * Test __toString() returns a string that begins with an
+     * alphanumeric character.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
+    {
+        $this->assertTrue(
+            ctype_alnum($this->queryTestInstance()->__toString()[0]),
+            $this->testFailedMessage(
+               $this->queryTestInstance(),
+               '__toString',
+                'returns a string that begins with an alphanumeric ' .
+                'character'
+            ),
+        );
+    }
+
     abstract public static function assertTrue(bool $condition, string $message = ''): void;
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;

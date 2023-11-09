@@ -24,7 +24,7 @@ class DomainNameTest extends PHPWebPathsTest
 
     public function setUp(): void
     {
-        $name = new Name(new Text($this->randomChars()));
+        $name = new Name(new Text('-' . $this->randomChars()));
         $this->setExpectedName($name);
         $this->setDomainNameTestInstance(new DomainName($name));
     }
