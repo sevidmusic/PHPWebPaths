@@ -358,6 +358,28 @@ trait HostTestTrait
         );
     }
 
+    /**
+     * Test __toString() returns a string that begins with an
+     * alphanumeric character.
+     *
+     * @return void
+     *
+     * @covers Host->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower($this->hostTestInstance()->__toString()),
+            $this->hostTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->hostTestInstance(),
+               '__toString',
+                'returns a lowercase string'
+            ),
+        );
+    }
+
     abstract public static function assertTrue(bool $condition, string $message = ''): void;
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;
