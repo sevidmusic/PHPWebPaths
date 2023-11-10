@@ -2,13 +2,13 @@
 
 namespace Darling\PHPWebPaths\tests\interfaces\paths;
 
+use \Darling\PHPWebPaths\enumerations\paths\parts\url\Scheme;
 use \Darling\PHPWebPaths\interfaces\paths\Domain;
 use \Darling\PHPWebPaths\interfaces\paths\parts\url\Authority;
-use \Darling\PHPWebPaths\enumerations\paths\parts\url\Scheme;
 
 /**
- * The DomainTestTrait defines common tests for
- * implementations of the Domain interface.
+ * The DomainTestTrait defines common tests for implementations of
+ * the Domain interface.
  *
  * @see Domain
  *
@@ -40,8 +40,17 @@ trait DomainTestTrait
     /**
      * Set up an instance of a Domain implementation to test.
      *
-     * This method must also set the Domain implementation instance
+     * This method must set the Domain implementation instance
      * to be tested via the setDomainTestInstance() method.
+     *
+     * This method must also set the Scheme that is expected
+     * to be returned by the Domain instance being tested's
+     * scheme() method via the setExpectedScheme() method.
+     *
+     * This method must also set the Authority that is expected
+     * to be returned by the Domain instance being tested's
+     * authority() method via the setExpectedAuthority()
+     * method.
      *
      * This method may also be used to perform any additional setup
      * required by the implementation being tested.
@@ -51,10 +60,34 @@ trait DomainTestTrait
      * @example
      *
      * ```
-     * protected function setUp(): void
+     * public function setUp(): void
      * {
+     *     $schemes = Scheme::cases();
+     *     $scheme = $schemes[array_rand($schemes)];
+     *     $this->setExpectedScheme($scheme);
+     *     $authority = new Authority(
+     *         new Host(
+     *             subDomainName: (
+     *                 rand(0, 1)
+     *                 ? null
+     *                : new SubDomainName(new Name( new Text($this->randomChars())))
+     *             ),
+     *             domainName: new DomainName(
+     *                 new Name(
+     *                     new Text($this->randomChars())
+     *                 )
+     *             ),
+     *             topLevelDomainName: (
+     *                 rand(0, 1)
+     *                 ? null
+     *                : new TopLevelDomainName(new Name( new Text($this->randomChars())))
+     *             ),
+     *         ),
+     *         (rand(0, 1) ? null : new Port(rand(1, 4000)))
+     *     );
+     *     $this->setExpectedAuthority($authority);
      *     $this->setDomainTestInstance(
-     *         new \Darling\PHPWebPaths\classes\paths\Domain()
+     *         new Domain($scheme, $authority)
      *     );
      * }
      *
