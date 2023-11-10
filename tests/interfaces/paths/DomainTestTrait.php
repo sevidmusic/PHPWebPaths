@@ -205,6 +205,27 @@ trait DomainTestTrait
         );
     }
 
+    /**
+     * Test __toString returns a lowercase string.
+     *
+     * @return void
+     *
+     * @covers Domain->__toString()
+     *
+     */
+    public function test___toString_returns_a_lowercase_string(): void
+    {
+        $this->assertEquals(
+            strtolower($this->domainTestInstance()->__toString()),
+            $this->domainTestInstance()->__toString(),
+            $this->testFailedMessage(
+               $this->domainTestInstance(),
+               '__toString',
+                'return a lowercase string'
+            ),
+        );
+    }
+
     abstract public static function assertEquals(mixed $expected, mixed $actual, string $message = ''): void;
     abstract protected function testFailedMessage(object $testedInstance, string $testedMethod, string $expectation): string;
 
