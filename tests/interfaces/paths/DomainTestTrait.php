@@ -70,7 +70,9 @@ trait DomainTestTrait
      *             subDomainName: (
      *                 rand(0, 1)
      *                 ? null
-     *                : new SubDomainName(new Name( new Text($this->randomChars())))
+     *                : new SubDomainName(
+     *                    new Name( new Text($this->randomChars()))
+     *                )
      *             ),
      *             domainName: new DomainName(
      *                 new Name(
@@ -80,7 +82,9 @@ trait DomainTestTrait
      *             topLevelDomainName: (
      *                 rand(0, 1)
      *                 ? null
-     *                : new TopLevelDomainName(new Name( new Text($this->randomChars())))
+     *                : new TopLevelDomainName(
+     *                    new Name( new Text($this->randomChars()))
+     *                )
      *             ),
      *         ),
      *         (rand(0, 1) ? null : new Port(rand(1, 4000)))
@@ -227,7 +231,8 @@ trait DomainTestTrait
     public function test___toString_returns_Scheme_concatentated_with_Authority(): void
     {
         $this->assertEquals(
-            $this->domainTestInstance()->scheme()->value . '://' . $this->domainTestInstance()->authority(),
+            $this->domainTestInstance()->scheme()->value .
+                '://' . $this->domainTestInstance()->authority(),
             $this->domainTestInstance()->__toString(),
             $this->testFailedMessage(
                $this->domainTestInstance(),

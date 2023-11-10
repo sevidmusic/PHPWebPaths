@@ -37,7 +37,9 @@ class DomainTest extends PHPWebPathsTest
                 subDomainName: (
                     rand(0, 1)
                     ? null
-                   : new SubDomainName(new Name( new Text($this->randomChars())))
+                    : new SubDomainName(
+                        new Name(new Text($this->randomChars()))
+                    )
                 ),
                 domainName: new DomainName(
                     new Name(
@@ -47,7 +49,9 @@ class DomainTest extends PHPWebPathsTest
                 topLevelDomainName: (
                     rand(0, 1)
                     ? null
-                   : new TopLevelDomainName(new Name( new Text($this->randomChars())))
+                    : new TopLevelDomainName(
+                        new Name( new Text($this->randomChars()))
+                    )
                 ),
             ),
             (rand(0, 1) ? null : new Port(rand(1, 4000)))
