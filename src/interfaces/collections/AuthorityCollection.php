@@ -6,7 +6,7 @@ use \Darling\PHPWebPaths\interfaces\paths\parts\url\Authority;
 
 /**
  * An AuthorityCollection can be used to define a collection of
- * Authoity instance.
+ * Authority instance.
  *
  * @see Authority
  *

@@ -17,12 +17,12 @@ trait AuthorityCollectionTestTrait
 
     /**
      * @var AuthorityCollection $authorityCollection
-     *                              An instance of a
-     *                              AuthorityCollection
-     *                              implementation to test.
+     *                                             An instance of a
+     *                                             AuthorityCollection
+     *                                             implementation to
+     *                                             test.
      */
     protected AuthorityCollection $authorityCollection;
-
 
     /**
      * @var array<int, Authority> $expectedCollection
@@ -40,8 +40,12 @@ trait AuthorityCollectionTestTrait
     /**
      * Set up an instance of a AuthorityCollection implementation to test.
      *
-     * This method must also set the AuthorityCollection implementation instance
+     * This method must set the AuthorityCollection implementation instance
      * to be tested via the setAuthorityCollectionTestInstance() method.
+     *
+     * This method must also set the collection of  Authority
+     * instances to be tested via the setExpectedCollection()
+     * method.
      *
      * This method may also be used to perform any additional setup
      * required by the implementation being tested.
@@ -51,10 +55,30 @@ trait AuthorityCollectionTestTrait
      * @example
      *
      * ```
-     * protected function setUp(): void
+     * public function setUp(): void
      * {
+     *     $authorities = [];
+     *     for($i = 0; $i < rand(0, 100); $i++) {
+     *         $authorities[] = new AuthorityInstance(
+     *             new HostInstance(
+     *                 subDomainName: new SubDomainNameInstance(
+     *                     new Name(new Text($this->randomChars()))
+     *                 ),
+     *                 domainName: new DomainNameInstance(
+     *                     new Name(new Text($this->randomChars()))
+     *                 ),
+     *                 topLevelDomainName: new TopLevelDomainNameInstance(
+     *                     new Name(new Text($this->randomChars()))
+     *                 ),
+     *             ),
+     *             new PortInstance(rand(8000, 9000)),
+     *         );
+     *     }
+     *     $this->setExpectedCollection($authorities);
      *     $this->setAuthorityCollectionTestInstance(
-     *         new \Darling\PHPWebPaths\classes\collections\AuthorityCollection()
+     *         new AuthorityCollection(
+     *             ...$authorities
+     *         )
      *     );
      * }
      *

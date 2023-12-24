@@ -2,17 +2,17 @@
 
 namespace Darling\PHPWebPaths\tests\classes\collections;
 
-use Darling\PHPWebPaths\classes\paths\parts\url\Port as PortInstance;
+use \Darling\PHPTextTypes\classes\strings\Name;
+use \Darling\PHPTextTypes\classes\strings\Text;
 use \Darling\PHPWebPaths\classes\collections\AuthorityCollection;
 use \Darling\PHPWebPaths\classes\paths\parts\url\Authority as AuthorityInstance;
 use \Darling\PHPWebPaths\classes\paths\parts\url\DomainName as DomainNameInstance;
 use \Darling\PHPWebPaths\classes\paths\parts\url\Host as HostInstance;
+use \Darling\PHPWebPaths\classes\paths\parts\url\Port as PortInstance;
 use \Darling\PHPWebPaths\classes\paths\parts\url\SubDomainName as SubDomainNameInstance;
 use \Darling\PHPWebPaths\classes\paths\parts\url\TopLevelDomainName as TopLevelDomainNameInstance;
 use \Darling\PHPWebPaths\tests\PHPWebPathsTest;
 use \Darling\PHPWebPaths\tests\interfaces\collections\AuthorityCollectionTestTrait;
-use \Darling\PHPTextTypes\classes\strings\Name;
-use \Darling\PHPTextTypes\classes\strings\Text;
 
 class AuthorityCollectionTest extends PHPWebPathsTest
 {

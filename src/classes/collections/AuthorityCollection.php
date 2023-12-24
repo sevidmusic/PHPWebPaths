@@ -21,7 +21,7 @@ class AuthorityCollection implements AuthorityCollectionInterface
      * Authority instances.
      *
      * @param Authority ...$authorities The Authority instances to
-     *                                  include in the collection.
+     *                                  assign to this collection.
      *
      */
     public function __construct(Authority ...$authorities)
