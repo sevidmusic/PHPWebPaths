@@ -39,7 +39,6 @@ class AuthorityCollection implements AuthorityCollectionInterface
      */
     public function collection(): array
     {
-        foreach($this->authorities as $auth) { var_dump($auth->__toString()); }
         return $this->authorities;
     }
 
