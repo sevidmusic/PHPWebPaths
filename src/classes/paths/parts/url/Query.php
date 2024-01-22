@@ -14,19 +14,36 @@ final class Query implements QueryInterface
             $this->text()->__toString()
         );
         $filteredTextString = '';
-        /** Make sure first character to be alphanumeric */
-        while(!ctype_alnum($originalTextStringCharacters[0])) {
+        while(
+            isset($originalTextStringCharacters[0])
+            &&
+            !ctype_alnum($originalTextStringCharacters[0])
+        ) {
             array_shift($originalTextStringCharacters);
         }
-        /**
-         * Make sure only valid Query characters are used. These
-         * characters are described in section 3.2 of RFC 3986:
-         *
-         * @see https://datatracker.ietf.org/doc/html/rfc3986#section-3.2
-         *
-         */
         $validNonAlphaNumericCharacters = [
-            '.', '/', '%', '_', '-', '=', '[', ']'
+            "'",
+            '-',
+            '.',
+            '_',
+            '~',
+            '!',
+            '#',
+            '$',
+            '&',
+            '(',
+            ')',
+            '*',
+            '+',
+            ',',
+            '/',
+            ':',
+            ';',
+            '=',
+            '?',
+            '@',
+            '[',
+            ']',
         ];
         foreach($originalTextStringCharacters as $character) {
             if(

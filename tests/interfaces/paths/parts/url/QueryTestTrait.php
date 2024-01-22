@@ -126,18 +126,50 @@ trait QueryTestTrait
         $originalTextStringCharacters = str_split($text->__toString());
         $filteredTextString = '';
         /** Expect first character to be alphanumeric */
-        while(!ctype_alnum($originalTextStringCharacters[0])) {
+        while(
+            isset($originalTextStringCharacters[0])
+            &&
+            !ctype_alnum($originalTextStringCharacters[0])
+        ) {
             array_shift($originalTextStringCharacters);
         }
         /**
          * Expect only valid Query characters as described in
-         * section 3.2 of RFC 3986:
+         * section 2.2 of RFC 3986 - "Reserved Characters"
+         * and section 2.3 of RFC 3986 - "Unreserved Characters":
          *
-         * @see https://datatracker.ietf.org/doc/html/rfc3986#section-3.2
+         * @see https://datatracker.ietf.org/doc/html/rfc3986#section-2.2
+         * @see https://datatracker.ietf.org/doc/html/rfc3986#section-2.3
+         * @https://stackoverflow.com/questions/13373504/what-is-a-valid-url-query-string
+         *
+         * Thiw will include alphanumeric characters, and the
+         * valid non-alphanumeric characters assigned to the
+         * $validNonAlphaNumericCharacters array.
          *
          */
         $validNonAlphaNumericCharacters = [
-            '.', '/', '%', '_', '-', '=', '[', ']'
+            "'",
+            '-',
+            '.',
+            '_',
+            '~',
+            '!',
+            '#',
+            '$',
+            '&',
+            '(',
+            ')',
+            '*',
+            '+',
+            ',',
+            '/',
+            ':',
+            ';',
+            '=',
+            '?',
+            '@',
+            '[',
+            ']',
         ];
         foreach($originalTextStringCharacters as $character) {
             if(
@@ -228,10 +260,10 @@ trait QueryTestTrait
      * @covers Host->__toString()
      *
      */
-    public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character(): void
+    public function test___toString_returns_a_string_that_begins_with_an_alphanumeric_character_if_query_is_not_empty(): void
     {
         $this->assertTrue(
-            ctype_alnum($this->queryTestInstance()->__toString()[0]),
+            empty($this->queryTestInstance()->__toString()[0]) || ctype_alnum($this->queryTestInstance()->__toString()[0]),
             $this->testFailedMessage(
                $this->queryTestInstance(),
                '__toString',

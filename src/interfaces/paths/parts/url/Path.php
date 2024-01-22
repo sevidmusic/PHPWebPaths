@@ -17,9 +17,9 @@ use \Stringable;
  *
  *
  * A Path's value will be a string that consists of a sequence of
- * characters that begins with an alphanumeric character and is
- * followed by any combination of letters [a-z], digits [0-9],
- * periods (.), slashes (/), underscores (_), or hyphens (-).
+ * characters that begins with a `/`, and is followed by any
+ * combination of letters [a-z], digits [0-9], periods (.),
+ * slashes (/), underscores (_), or hyphens (-).
  *
  * An Path will abide by the url authority specification
  * described in section 3.2 of RFC 3986:
