@@ -28,7 +28,7 @@ composer require darling/php-web-paths
 
 ### \Darling\PHPWebPaths\interfaces\web\paths\Url
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\web\paths;
@@ -131,7 +131,7 @@ interface Url extends Stringable
 
 ### \Darling\PHPWebPaths\interfaces\web\paths\parts\url\Domain
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\web\paths;
@@ -197,7 +197,7 @@ interface Domain extends Stringable
 
 ### \Darling\PHPWebPaths\enumerations\Scheme
 
-```
+```php
 <?php
 
 namespace Darling\PHPWebPaths\enumerations\paths\parts;
@@ -906,12 +906,11 @@ enum Scheme: string
 
 }
 
-
 ```
 
 ### \Darling\PHPWebPaths\interfaces\paths\parts\url\Authority
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -958,7 +957,7 @@ interface Authority extends Stringable
 
 ### \Darling\PHPWebPaths\interfaces\paths\parts\url\Host
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1012,7 +1011,7 @@ interface Host extends Stringable
 
 ### \Darling\PHPWebPaths\interfaces\paths\parts\url\Port
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1049,7 +1048,7 @@ interface Port extends Stringable
 
 ### \Darling\PhpWebPaths\interfaces\paths\parts\url\SubDomainName
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1078,7 +1077,7 @@ interface SubDomainName
 
 ### \Darling\PhpWebPaths\interfaces\paths\parts\url\DomainName
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1109,7 +1108,7 @@ interface DomainName
 
 ### \Darling\PhpWebPaths\interfaces\paths\parts\url\TopLevelDomainName
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1141,7 +1140,7 @@ interface TopLevelDomainName
 
 ### \Darling\PHPWebPaths\interfaces\paths\parts\url\Path
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1181,7 +1180,7 @@ interface Path extends Stringable
 
 ### \Darling\PHPWebPaths\interfaces\paths\parts\url\Query
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1222,7 +1221,7 @@ interface Query extends Stringable
 
 ### \Darling\PHPWebPaths\interfaces\paths\parts\url\Fragment
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\paths\parts\url;
@@ -1264,7 +1263,7 @@ interface Fragment extends Stringable
 
 For example:
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebPaths\interfaces\routes;
@@ -1294,7 +1293,7 @@ interface Route
 
 ### \Darling\PHPWebRelativePaths\interfaces\paths\parts\RelativePath
 
-```
+```php
 <?php
 
 namespace \Darling\PHPWebRelativePaths\interfaces\paths\parts;
