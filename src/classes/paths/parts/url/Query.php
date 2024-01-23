@@ -44,6 +44,7 @@ final class Query implements QueryInterface
             '@',
             '[',
             ']',
+            '%',
         ];
         foreach($originalTextStringCharacters as $character) {
             if(

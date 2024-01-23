@@ -23,7 +23,7 @@ class QueryTest extends PHPWebPathsTest
     protected function setUp(): void
     {
         $text = new Text(
-            rand(0, 1) ? '-test-query=' . $this->randomChars() : ''
+            rand(0, 1) ? '-test-query=' . $this->randomChars() . '&paramName=Param%20Value&foo[]=bar&&foo[]=baz&&bin' : ''
         );
         $this->setExpectedText($text);
         $this->setQueryTestInstance(
