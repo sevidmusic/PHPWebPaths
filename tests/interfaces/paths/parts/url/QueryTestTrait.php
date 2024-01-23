@@ -170,6 +170,7 @@ trait QueryTestTrait
             '@',
             '[',
             ']',
+            '%',
         ];
         foreach($originalTextStringCharacters as $character) {
             if(
